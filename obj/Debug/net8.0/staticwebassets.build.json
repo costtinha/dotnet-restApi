@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "tnXNAfpXGNxcgfR2XZC5oBaSe4ZsbvG8scMvSot6yto=",
+  "Source": "PrimeiroRestApi",
+  "BasePath": "_content/PrimeiroRestApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
