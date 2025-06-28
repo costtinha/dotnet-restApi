@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YOpwYuR5GwVZ8omGH7h1DEX9SdBCMQxeuA061mK9WWgiUAXbGzQEQyof78pLe+7wthMWX0MXgRU1u8rwMVC12A==",
+  "dgSpecHash": "BSYsw0+AV5XN/YB05+jgdCmj8UZhBC2wan5jAqni7bo2i6Fuayb5T3mazg9gbawH2FvFDZPVNJa9AC0crC8gDg==",
   "success": true,
   "projectFilePath": "/home/daniel/Projetos/dotnet/PrimeiroRestApi/PrimeiroRestApi.csproj",
   "expectedPackageFiles": [
+    "/home/daniel/.nuget/packages/automapper/14.0.0/automapper.14.0.0.nupkg.sha512",
     "/home/daniel/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/daniel/.nuget/packages/microsoft.aspnetcore.openapi/8.0.17/microsoft.aspnetcore.openapi.8.0.17.nupkg.sha512",
     "/home/daniel/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

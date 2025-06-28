@@ -5,6 +5,7 @@
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/PrimeiroRestApi.runtimeconfig.json
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/PrimeiroRestApi.dll
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/PrimeiroRestApi.pdb
+/home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/AutoMapper.dll
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/Humanizer.dll
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/Microsoft.AspNetCore.OpenApi.dll
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/bin/Debug/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
@@ -89,6 +90,7 @@
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/PrimeiroRestApi.csproj.CoreCompileInputs.cache
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/PrimeiroRestApi.MvcApplicationPartsAssemblyInfo.cs
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/PrimeiroRestApi.MvcApplicationPartsAssemblyInfo.cache
+/home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/PrimeiroRestApi.sourcelink.json
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/staticwebassets.build.json
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/staticwebassets.development.json
 /home/daniel/Projetos/dotnet/PrimeiroRestApi/obj/Debug/net8.0/staticwebassets/msbuild.PrimeiroRestApi.Microsoft.AspNetCore.StaticWebAssets.props
