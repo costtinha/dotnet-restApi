@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using OfficeApi.Data;
+using OfficeApi.Dtos;
 using OfficeApi.Models;
 
 namespace OfficeApi.Repositories
@@ -17,40 +18,47 @@ namespace OfficeApi.Repositories
             _mapper = mapper;
         }
 
-        public async Task<List<Office>> FindAllAsync()
+        public async Task<List<OfficeResponseDto>> FindAllAsync()
         {
-            return await _context.Offices.ToListAsync();
+            var offices = await _context.Offices.ToListAsync();
+            return _mapper.Map<List<OfficeResponseDto>>(offices);
         }
 
-        public async Task<Office> FindOfficeById(int id)
+        public async Task<OfficeResponseDto> FindOfficeById(int id)
         {
             var office = await _context.Offices.FindAsync(id);
             if (office == null)
             {
                 throw new KeyNotFoundException($"Office with ID {id} not Found");
             }
-            return office;
+            return _mapper.Map<OfficeResponseDto>(office);
         }
 
-        public async Task<List<Office>> FindOfficeByCity(string city)
+        public async Task<List<OfficeResponseDto>> FindOfficeByCity(string city)
         {
-            return await _context.Offices.Where(o => o.City == city).ToListAsync();
+
+            var offices = await _context.Offices.Where(o => o.City == city).ToListAsync();
+            return _mapper.Map<List<OfficeResponseDto>>(offices);
         }
 
-        public async Task<List<Office>> FindOfficeByState(string state)
+        public async Task<List<OfficeResponseDto>> FindOfficeByState(string state)
         {
-            return await _context.Offices.Where(o => o.State == state).ToListAsync();
+            var offices = await _context.Offices.Where(o => o.State == state).ToListAsync();
+            return _mapper.Map<List<OfficeResponseDto>>(offices);
         }
 
-        public async Task<List<Office>> FindOfficeByCountry(string country)
+        public async Task<List<OfficeResponseDto>> FindOfficeByCountry(string country)
         {
-            return await _context.Offices.Where(o => o.Country == country).ToListAsync();
+            var offices = await _context.Offices.Where(o => o.Country == country).ToListAsync();
+            return _mapper.Map<List<OfficeResponseDto>>(offices);
         }
 
-        public async Task SaveOfficeAsync(Office office)
+        public async Task<OfficeResponseDto> SaveOfficeAsync(OfficeDto dto)
         {
+            Office office = _mapper.Map<Office>(dto);
             _context.Offices.Add(office);
             await _context.SaveChangesAsync();
+            return _mapper.Map<OfficeResponseDto>(office);
         }
 
         public async Task DeleteOfficeById(int id)
