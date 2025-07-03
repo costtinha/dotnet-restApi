@@ -32,12 +32,12 @@ namespace OfficeApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<EmployeeResponseDto>> FindEmployeeById(int id)
         {
-            //var employee = _employeeRepository.FindEmployeeById(id);
-            //  if (employee == null)
-            // {
-            //    NotFound($"Employee with id {id} not found");
-            //}
-            // return _mapper.Map<EmployeeResponseDto>(employee);
+            //var employee = await _employeeRepository.FindEmployeeById(id);
+              //if (employee == null)
+            //{
+                //NotFound($"Employee with id {id} not found");
+           // }
+             //return _mapper.Map<EmployeeResponseDto>(employee);
 
             try
             {
@@ -50,7 +50,7 @@ namespace OfficeApi.Controllers
             }
         }
 
-        [HttpGet("/name/{name}")]
+        [HttpGet("name/{name}")]
         public async Task<ActionResult<IEnumerable<EmployeeResponseDto>>> FindEmployeeByName(string name)
         {
             return await _employeeRepository.FindEmployeeByName(name);

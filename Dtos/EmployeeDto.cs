@@ -8,6 +8,6 @@ namespace OfficeApi.Dtos
         public string? name { get; set; }
 
         [Required]
-        public int OfficeCode;
+        public int OfficeCode { get; set; }
     }    
 }
