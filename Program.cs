@@ -21,6 +21,7 @@ builder.Services.AddAutoMapper(config =>
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<OfficeRepository>();
+builder.Services.AddScoped<EmployeeRepository>();
 var app = builder.Build();
 
 app.UseHttpsRedirection();

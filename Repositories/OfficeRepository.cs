@@ -53,15 +53,29 @@ namespace OfficeApi.Repositories
             return _mapper.Map<List<OfficeResponseDto>>(offices);
         }
 
-        public async Task<OfficeResponseDto> SaveOfficeAsync(OfficeDto dto)
+        public async Task<(int code, OfficeResponseDto responseDto)> SaveOfficeAsync(OfficeDto dto)
         {
             Office office = _mapper.Map<Office>(dto);
             _context.Offices.Add(office);
             await _context.SaveChangesAsync();
-            return _mapper.Map<OfficeResponseDto>(office);
+            return (office.Code,_mapper.Map<OfficeResponseDto>(office));
         }
 
-        public async Task DeleteOfficeById(int id)
+        public async Task<OfficeResponseDto> UpdateOfficeAsync(int id, OfficeDto dto)
+        {
+            var office = await _context.Offices.FindAsync(id);
+            if (office == null)
+            {
+                throw new KeyNotFoundException($"Office with id {id} not found");
+            }
+            _mapper.Map(dto, office);
+            _context.Offices.Update(office);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<OfficeResponseDto>(office);
+
+        }
+
+        public async Task<OfficeResponseDto> DeleteOfficeById(int id)
         {
             var office = await _context.Offices.FindAsync(id);
             if (office != null)
@@ -69,6 +83,7 @@ namespace OfficeApi.Repositories
                 _context.Offices.Remove(office);
                 await _context.SaveChangesAsync();
             }
+            return _mapper.Map<OfficeResponseDto>(office);
         }
 
     }

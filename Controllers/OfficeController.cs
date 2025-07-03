@@ -20,29 +20,34 @@ namespace OfficeApi.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<List<OfficeResponseDto>> GetAllOffices()
+        public async Task<ActionResult<IEnumerable<OfficeResponseDto>>> GetAllOffices()
         {
-            return await _officeRepository.FindAllAsync();
+            var offices = await _officeRepository.FindAllAsync();
+            if (!offices.Any())
+            {
+                return NotFound("No offices found");
+            }
+            return offices;
         }
 
         [HttpGet("{id}")]
-        public async Task<OfficeResponseDto> GetOfficeById(int id)
+        public async Task<ActionResult<OfficeResponseDto>> GetOfficeById(int id)
         {
             return await _officeRepository.FindOfficeById(id);
         }
 
         [HttpGet("city/{city}")]
-        public async Task<List<OfficeResponseDto>> GetOfficeByCityName(string city)
+        public async Task<ActionResult<IEnumerable<OfficeResponseDto>>> GetOfficeByCityName(string city)
         {
             return await _officeRepository.FindOfficeByCity(city);
         }
         [HttpGet("state/{state}")]
-        public async Task<List<OfficeResponseDto>> GetOfficeByStateName(string state)
+        public async Task<ActionResult<IEnumerable<OfficeResponseDto>>> GetOfficeByStateName(string state)
         {
             return await _officeRepository.FindOfficeByState(state);
         }
         [HttpGet("country/{country}")]
-        public async Task<List<OfficeResponseDto>> GetOfficeByCountryName(string country)
+        public async Task<ActionResult<IEnumerable<OfficeResponseDto>>> GetOfficeByCountryName(string country)
         {
             return await _officeRepository.FindOfficeByCountry(country);
         }
@@ -54,10 +59,48 @@ namespace OfficeApi.Controllers
                 return BadRequest(ModelState);
             }
 
-             var officeResponse = _officeRepository.SaveOfficeAsync(dto);
-            Office office = _mapper.Map<Office>(officeResponse);
-            return CreatedAtAction(nameof(GetOfficeById), new {id = office.Code}, officeResponse);
+            var (officeCode , officeResponse) = await _officeRepository.SaveOfficeAsync(dto);
+            return CreatedAtAction(nameof(GetOfficeById), new { id = officeCode }, officeResponse);
 
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<OfficeResponseDto>> UpdateOffice(int id, [FromBody] OfficeDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                var officeResponse = await _officeRepository.UpdateOfficeAsync(id, dto);
+                return Ok(officeResponse);
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteOffice(int id)
+        {
+            try
+            {
+                await _officeRepository.DeleteOfficeById(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
         }
 
     }

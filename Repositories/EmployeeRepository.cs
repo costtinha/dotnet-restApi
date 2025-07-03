@@ -10,11 +10,13 @@ namespace OfficeApi.Repositories
     {
         private readonly OfficeDbContext _context;
         private IMapper _mapper;
+        private OfficeRepository _officeRepository;
 
-        public EmployeeRepository(OfficeDbContext context, IMapper mapper)
+        public EmployeeRepository(OfficeDbContext context, IMapper mapper, OfficeRepository officeRepository)
         {
             _context = context;
             _mapper = mapper;
+            _officeRepository = officeRepository;
         }
 
         public async Task<List<EmployeeResponseDto>> FindAllEmployeeAsync()
@@ -46,11 +48,28 @@ namespace OfficeApi.Repositories
             return _mapper.Map<List<EmployeeResponseDto>>(employees);
         }
 
-        public async Task SaveEmployeeAsync(EmployeeDto dto)
+
+        public async Task<(int id, EmployeeResponseDto Responsedto)> SaveEmployeeAsync(EmployeeDto dto)
         {
             Employee employee = _mapper.Map<Employee>(dto);
             _context.Add(employee);
             await _context.SaveChangesAsync();
+            EmployeeResponseDto employeeResponseDto = _mapper.Map<EmployeeResponseDto>(employee);
+            return (employee.EmployeeId, employeeResponseDto);
+        }
+
+        public async Task<EmployeeResponseDto> UpdateEmployeeAsync(int id, EmployeeDto dto)
+        {
+            var employee = await _context.Employees.FindAsync(id);
+            if (employee == null)
+            {
+                throw new KeyNotFoundException($"Employee with id {id} not found");
+            }
+            _mapper.Map(dto, employee);
+            _context.Employees.Update(employee);
+            await _context.SaveChangesAsync();
+            return _mapper.Map<EmployeeResponseDto>(employee);
+
 
         }
 
@@ -62,7 +81,7 @@ namespace OfficeApi.Repositories
             {
                 _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();
-                
+
             }
 
         }
