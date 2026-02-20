@@ -69,8 +69,8 @@ Ideal para portfólio, estudos de .NET moderno, entrevistas técnicas ou como ba
 
 ### 1. Com Docker (recomendado para PostgreSQL)
 
-```bash
 # 1. Clone o repositório
+```bash
 git clone https://github.com/costtinha/dotnet-restApi.git
 cd office-api-dotnet
 ```
