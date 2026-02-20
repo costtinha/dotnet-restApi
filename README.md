@@ -17,7 +17,6 @@ Foco em uma arquitetura limpa, uso correto de camadas (Controllers → Services/
 - [Exemplos de Requisições](#-exemplos-de-requisições)
 - [Estrutura do Projeto](#-estrutura-do-projeto)
 - [Decisões & Aprendizados](#-decisões--aprendizados)
-- [Melhorias sugeridas](#-melhorias-sugeridas)
 - [Licença](#-licença)
 
 ---
